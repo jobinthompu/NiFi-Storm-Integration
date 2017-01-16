@@ -9,18 +9,22 @@ Sample Application for Log Ingestion with NiFi and Storm into Phoenix using NiFi
 ## Introduction
 
 Using NiFi, data can be exposed in such a way that a receiver can pull from it by adding an Output Port to the root process group. 
-For Storm, we will use this same mechanism - we will use the Site-to-Site protocol to pull data from NiFi's Output Ports.
+For Storm, we will use this same mechanism - we will use the Site-to-Site protocol to pull data from NiFi's Output Ports. In this tutorial we learn to capture NiFi app log from the Sandbox and parse it using Java regex and ingest it to Phoenix via Storm or Directly using NiFi PutSql Processor
 
 ## Prerequisite
 
-1) Assuming you already have latest version of NiFi-0.6.0/HDF-1.2.0 downloaded on your HW Sandbox, else execute below after ssh connectivity to sandbox is established:
+1) Assuming you already have latest version of NiFi-1.x/HDF-2.x downloaded on your HW Sandbox Version 2.5, else execute below after ssh connectivity to sandbox is established:
 
 ```
 # cd /opt/
-# wget http://public-repo-1.hortonworks.com/HDF/centos6/1.x/updates/1.2.0.0/HDF-1.2.0.0-91.tar.gz
-# tar -xvf HDF-1.2.0.0-91.tar.gz
+# wget http://public-repo-1.hortonworks.com.s3.amazonaws.com/HDF/centos6/2.x/updates/2.0.1.0/HDF-2.0.1.0-centos6-tars-tarball.tar.gz
+# tar -xvf HDF-2.0.1.0-12.tar.gz
 ```
-2) Storm Installed on your VM and started.
+2) Storm is Installed on your VM and started.
+3) Hbase is Installed with phoeix Query Server.
+4) Make sure Hbase is up and running and out of maintenance mode, below properties are set(if not set it and restart the services):
+	- Enable Phoenix --> Enabled
+	- Enable Authorization --> Off
 
 ## Steps
 
