@@ -23,13 +23,27 @@ For Storm, we will use this same mechanism - we will use the Site-to-Site protoc
 2) Storm is Installed on your VM and started.
 
 3) Hbase is Installed with phoeix Query Server.
+	
+## Configuring and Creating Table in Hbase via Phoenix
 
-4) Make sure Hbase is up and running and out of maintenance mode, below properties are set(if not set it and restart the services):
+1) Make sure Hbase components as well as phoenix query server is started.
+2) Make sure Hbase is up and running and out of maintenance mode, below properties are set(if not set it and restart the services):
 	
 	- Enable Phoenix --> Enabled
 	
 	- Enable Authorization --> Off
+3) Create Phoenix Table after connecting to phoenix shell:
+	
+```
+# /usr/hdp/current/phoenix-client/bin/sqlline.py sandbox.hortonworks.com:2181:/hbase-unsecure
+```
 
+4) Execute below in the Phoenix shell:
+
+```
+CREATE TABLE NIFI_LOG( UUID VARCHAR NOT NULL, EVENT_DATE VARCHAR, BULLETIN_LEVEL VARCHAR, EVENT_TYPE VARCHAR, CONTENT VARCHAR CONSTRAINT pk PRIMARY KEY(UUID));
+```
+	
 ## Configuring and Starting NiFi
 
 1) Open **nifi.properties** for updating configurations:
