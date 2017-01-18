@@ -64,6 +64,7 @@ nifi.remote.input.secure=false
 	
 * Connect to below url in your browser: http://your-vm-ip:9090/nifi/
 * Drop a  "**TailFile**" Processor to canvas to read lines added to "**/opt/HDF-2.0.1.0/nifi/logs/nifi-app.log**". Auto Terminate relationship Failure. 
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/TailFile.jpg)
 * Drop an OutputPort to the canvas and Name it "**OUT**", Once added, connect "TailFile" to the port for Success relationship.
 
 2) 
