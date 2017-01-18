@@ -72,10 +72,12 @@ nifi.remote.input.secure=false
 	- CONTENT:(^.*)
 	- EVENT_DATE:([^,]*)
 	- EVENT_TYPE:(?<=\[)(.*?)(?=\])
+	
 	Connect SplitText processor to ExtractText Processor for splits relationship.
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/ExtractText.jpg)
 
-* Drop an OutputPort to the canvas and Name it "**OUT**", Once added, connect "ExtractText" to the port for matched relationship.
+* Drop an OutputPort to the canvas and Name it "**OUT**", Once added, connect "ExtractText" to the port for matched relationship. The Flow would look similar as below:
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/Storm-Flow.jpg)
 
 2) 
 
