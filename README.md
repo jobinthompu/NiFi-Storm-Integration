@@ -65,7 +65,17 @@ nifi.remote.input.secure=false
 * Connect to below url in your browser: http://your-vm-ip:9090/nifi/
 * Drop a  "**TailFile**" Processor to canvas to read lines added to "**/opt/HDF-2.0.1.0/nifi/logs/nifi-app.log**". Auto Terminate relationship Failure. 
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/TailFile.jpg)
-* Drop an OutputPort to the canvas and Name it "**OUT**", Once added, connect "TailFile" to the port for Success relationship.
+* Drop a  "**SplitText**" Processor to canvas to split the log file into separate lines. Auto terminate Original and Failure Relationship for now. Connect TailFile processor to SplitText Processor for Success Relationship.
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/SplitText.jpg)
+* Drop a  "**ExtractText**" Processor to canvas to extract portions of the log content to attributes as below:
+	- BULLETIN_LEVEL:([A-Z]{4,5})
+	- CONTENT:(^.*)
+	- EVENT_DATE:([^,]*)
+	- EVENT_TYPE:(?<=\[)(.*?)(?=\])
+	Connect SplitText processor to ExtractText Processor for splits relationship.
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/ExtractText.jpg)
+
+* Drop an OutputPort to the canvas and Name it "**OUT**", Once added, connect "ExtractText" to the port for matched relationship.
 
 2) 
 
