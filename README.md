@@ -9,7 +9,7 @@ Sample Application for Log Ingestion with NiFi and Storm into Phoenix using NiFi
 ## Introduction
 
 Using NiFi, data can be exposed in such a way that a receiver can pull from it by adding an Output Port to the root process group. 
-For Storm, we will use this same mechanism - we will use the Site-to-Site protocol to pull data from NiFi's Output Ports. In this tutorial we learn to capture NiFi app log from the Sandbox and parse it using Java regex and ingest it to Phoenix via Storm or Directly using NiFi PutSql Processor
+For Storm, we will use this same mechanism - we will use the Site-to-Site protocol to pull data from NiFi's Output Ports. In this tutorial we learn to capture NiFi app log from the Sandbox and parse it using Java regex and ingest it to Phoenix via Storm or Directly using NiFi PutSql Processor.
 
 ## Prerequisite
 
@@ -110,7 +110,7 @@ http://your-vm-ip:9090/nifi/
 6) Start the flow on NiFi and notice data is stuck in the connection before the output port "OUT"
 
 
-## Building Storm application with maven
+## Building Storm application jar with maven
 
 1) To begin with, lets clone the artifacts, feel free to inspect the dependencies and NiFiStormStreaming.java 
 
@@ -177,7 +177,24 @@ Zeppelin UI: http://your-vm-ip:9995/
 9) No you can Change the code as needed, re-built the jar and re-submit the topologies.
 
 
-This completes the tutorial,  You have successfully:
+## Extending NiFi Flow to ingest data directly to Phoenix using PutSql processor
+
+1) Lets go ahead and kill the storm topology from command-line (or from Ambari Storm-View or Storm UI) 
+
+```
+# storm kill NiFi-Storm-Phoenix
+```
+2) Log back to NiFi UI currently running the flow, and stop the entire flow.
+
+3) Drop an AttributesToJSON processor to canvas with below configuration and connect ExtractText's Matched relation to it.
+```
+Attributes List : uuid,EVENT_DATE,BULLETIN_LEVEL,EVENT_TYPE,CONTENT
+Destination : flowfile-content
+```
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/AttributesToJSON.jpg)
+
+
+### This completes the tutorial,  You have successfully:
 
 * Installed and Configured HDF 2.0 on your HDP-2.5 Sandbox.
 * Created a Data flow to pull logs and then to Parse it and mave it available on a Site-to-site enabled NiFi port.
