@@ -13,7 +13,7 @@ For Storm, we will use this same mechanism - we will use the Site-to-Site protoc
 
 ## Prerequisite
 
-1) Assuming you already have latest version of NiFi-1.x/HDF-2.x downloaded on your HW Sandbox Version 2.5, else execute below after ssh connectivity to sandbox is established:
+1) Assuming you already have latest version of NiFi-1.x/HDF-2.x downloaded as zip file (HDF and HDP cannot be managed by Ambari on same nodes as of now) on to your HW Sandbox Version 2.5, else execute below after ssh connectivity to sandbox is established:
 
 ```
 # cd /opt/
@@ -160,35 +160,32 @@ Storm UI: http://your-vm-ip:8744/index.html
 
 7) Lets Go back to the NiFi Web UI, if everything worked fine, the data which was pending on the port OUT will be gone as it was consumed by Storm.
 
+8) Now Lets Connect to Phoenix and check out the data populated in tables, you can either use Phoenix sqlline command line or Zeppelin 
 
-9) Lets submit storm topology with below command [Assuming nifi is running on localhost:8099 and data is available on port 'OUT'. If you need to make any minor changes in the code  you can follow instruction starting step 11. **MyFile_** is the prefix of the local files to be created]
-
+ - via phoenix sqlline
+ 
 ```
-# storm jar /opt/Storm-NiFi/resources/Storm_Nifi.jar NiFi.NiFiStormTopology /tmp/MyFile_
+# /usr/hdp/current/phoenix-client/bin/sqlline.py localhost:2181:/hbase-unsecure 
 ```
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/sqlline.jpg)
 
-10) Once topology is submitted, you may check and verify the files received placed under /tmp/ [as storm user is running the topology, makesure storm user have permission to write in the path you provided.]
-
+ - via Zeppelin for better visualization 
+ 
 ```
-# ls -l /tmp | grep MyFile_
+Zeppelin UI: http://your-vm-ip:9995/
 ```
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/Zeppelin.jpg)
 
-## Making Config changes to Topology:
+9) No you can Change the code as needed, re-built the jar and re-submit the topologies.
 
-11) To make changes in NiFiStormTopology.java and re-submit the topology, use following steps:
 
-```
-# vi /opt/Storm-NiFi/resources/NiFi/NiFiStormTopology.java
-```
-12) Once changes are done, compile NiFiStormTopology.java file and update the jar with latest classfiles:
+This completes the tutorial,  You have successfully:
 
-```
-# cd /opt/Storm-NiFi/resources
-# javac -cp ".:Storm_Nifi.jar" NiFi/NiFiStormTopology.java
-# jar uf Storm_Nifi.jar  NiFi/
-```
-
-13) No you can re-submit the topologies with updated jars [follow step 9].
+* Installed and Configured HDF 2.0 on your HDP-2.5 Sandbox.
+* Created a Data flow to pull logs and then to Parse it and mave it available on a Site-to-site enabled NiFi port.
+* Created a Storm topology to consume data from NiFi via Site-to-Site and Ingest it to Hbase via Phoenix.
+* (Directly Ingested Data to Phoenix with PutSQL Processor in NiFi with out using Storm)
+* Viewed the Ingested data from Phoenix command line and Zeppelin
 
 
 ### References:
