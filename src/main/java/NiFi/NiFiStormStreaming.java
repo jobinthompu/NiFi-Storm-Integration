@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 import org.apache.nifi.remote.client.SiteToSiteClient;
@@ -23,6 +26,7 @@ import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.TopologyBuilder;
 import org.apache.storm.topology.base.BaseBasicBolt;
 import org.apache.storm.tuple.Tuple;
+
 public class NiFiStormStreaming {
 
 private static Connection con;
@@ -62,7 +66,14 @@ public void execute(Tuple tuple, BasicOutputCollector collector)
 				//Extracting NiFi FLowFIle Attributes
 				String UUID = (String) dp.getAttributes().get("uuid");
 				String BULLETIN_LEVEL = (String) dp.getAttributes().get("BULLETIN_LEVEL");
-				String EVENT_DATE = (String) dp.getAttributes().get("EVENT_DATE");
+				
+				
+				String NIFI_DATE = (String) dp.getAttributes().get("EVENT_DATE");
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date NIFI_DATES = (Date) formatter.parse(NIFI_DATE); 
+				java.sql.Timestamp EVENT_DATE = new java.sql.Timestamp(NIFI_DATES.getTime());
+
+				
 				String EVENT_TYPE = (String) dp.getAttributes().get("EVENT_TYPE");
 				//Extracting NiFi FLowFIle Content
 				String CONTENT = new String(dp.getContent());
@@ -83,6 +94,9 @@ public void execute(Tuple tuple, BasicOutputCollector collector)
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

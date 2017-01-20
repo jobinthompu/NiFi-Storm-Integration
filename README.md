@@ -49,7 +49,7 @@ For Storm, we will use this same mechanism - we will use the Site-to-Site protoc
 4) Execute below in the Phoenix shell:
 
 ```
-CREATE TABLE NIFI_LOG( UUID VARCHAR NOT NULL, EVENT_DATE VARCHAR, BULLETIN_LEVEL VARCHAR, EVENT_TYPE VARCHAR, CONTENT VARCHAR CONSTRAINT pk PRIMARY KEY(UUID));
+CREATE TABLE NIFI_LOG( UUID VARCHAR NOT NULL, EVENT_DATE DATE, BULLETIN_LEVEL VARCHAR, EVENT_TYPE VARCHAR, CONTENT VARCHAR CONSTRAINT pk PRIMARY KEY(UUID));
 ```
 	
 ## Configuring and Starting NiFi
@@ -159,6 +159,7 @@ Storm UI: http://your-vm-ip:8744/index.html
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/StormUI.jpg)
 
 7) Lets Go back to the NiFi Web UI, if everything works fine, the data which was pending on the port OUT will be gone as it was consumed by Storm.
+
 
 9) Lets submit storm topology with below command [Assuming nifi is running on localhost:8099 and data is available on port 'OUT'. If you need to make any minor changes in the code  you can follow instruction starting step 11. **MyFile_** is the prefix of the local files to be created]
 
