@@ -68,6 +68,7 @@ public void execute(Tuple tuple, BasicOutputCollector collector)
 				String CONTENT = new String(dp.getContent());
 				//Print Upsert Query, can find this in Storm Logs
 				System.err.println("upsert into NIFI_LOG values ("+UUID+","+BULLETIN_LEVEL+","+EVENT_DATE+","+EVENT_TYPE+","+CONTENT+")");
+				Class.forName("org.apache.phoenix.jdbc.PhoenixDriver").newInstance();
 				con = DriverManager.getConnection("jdbc:phoenix:"+zk_hostname+":2181:/hbase-unsecure");
 			    con.setAutoCommit(true);
 				Statement stmt = con.createStatement();
@@ -75,7 +76,16 @@ public void execute(Tuple tuple, BasicOutputCollector collector)
 					}
 				catch (SQLException e) {
 					e.printStackTrace();
-					}
+					} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	}
 public void declareOutputFields(OutputFieldsDeclarer declarer) {}
 }).shuffleGrouping("nifi");

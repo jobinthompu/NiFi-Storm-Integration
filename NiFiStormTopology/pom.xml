@@ -1,0 +1,327 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>NiFi</groupId>
+  <artifactId>NiFiStormTopology</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0</version>
+  <name>NiFiStormTopology</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
+<!-- https://mvnrepository.com/artifact/com.twitter/chill-java -->
+<dependency>
+    <groupId>com.twitter</groupId>
+    <artifactId>chill-java</artifactId>
+    <version>0.3.5</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.clojure/clojure -->
+<dependency>
+    <groupId>org.clojure</groupId>
+    <artifactId>clojure</artifactId>
+    <version>1.7.0</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+<dependency>
+    <groupId>commons-codec</groupId>
+    <artifactId>commons-codec</artifactId>
+    <version>1.10</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/commons-collections/commons-collections -->
+<dependency>
+    <groupId>commons-collections</groupId>
+    <artifactId>commons-collections</artifactId>
+    <version>3.2.1</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-exec -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-exec</artifactId>
+    <version>1.1</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+<dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>2.5</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-lang3</artifactId>
+    <version>3.4</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+<dependency>
+    <groupId>commons-logging</groupId>
+    <artifactId>commons-logging</artifactId>
+    <version>1.2</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.lmax/disruptor -->
+<dependency>
+    <groupId>com.lmax</groupId>
+    <artifactId>disruptor</artifactId>
+    <version>3.3.2</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>4.4.1</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpcore</artifactId>
+    <version>4.4.1</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore-nio -->
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpcore-nio</artifactId>
+    <version>4.4.5</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl -->
+<dependency>
+    <groupId>org.codehaus.jackson</groupId>
+    <artifactId>jackson-core-asl</artifactId>
+    <version>1.9.2</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
+<dependency>
+    <groupId>org.codehaus.jackson</groupId>
+    <artifactId>jackson-mapper-asl</artifactId>
+    <version>1.9.13</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+<dependency>
+    <groupId>com.googlecode.json-simple</groupId>
+    <artifactId>json-simple</artifactId>
+    <version>1.1</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.esotericsoftware/kryo -->
+<dependency>
+    <groupId>com.esotericsoftware</groupId>
+    <artifactId>kryo</artifactId>
+    <version>3.0.3</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-api</artifactId>
+    <version>2.1</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>2.1</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>log4j-over-slf4j</artifactId>
+    <version>1.7.12</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-classic</artifactId>
+    <version>1.1.3</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-core -->
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-core</artifactId>
+    <version>1.1.3</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.esotericsoftware/minlog -->
+<dependency>
+    <groupId>com.esotericsoftware</groupId>
+    <artifactId>minlog</artifactId>
+    <version>1.3.0</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.nifi/nifi-api -->
+<dependency>
+    <groupId>org.apache.nifi</groupId>
+    <artifactId>nifi-api</artifactId>
+    <version>1.0.0</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.nifi/nifi-client-dto -->
+<dependency>
+    <groupId>org.apache.nifi</groupId>
+    <artifactId>nifi-client-dto</artifactId>
+    <version>1.0.0</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.nifi/nifi-framework-api -->
+<dependency>
+    <groupId>org.apache.nifi</groupId>
+    <artifactId>nifi-framework-api</artifactId>
+    <version>1.0.0</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.nifi/nifi-site-to-site-client -->
+<dependency>
+    <groupId>org.apache.nifi</groupId>
+    <artifactId>nifi-site-to-site-client</artifactId>
+    <version>1.0.0</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.nifi/nifi-site-to-site -->
+<dependency>
+    <groupId>org.apache.nifi</groupId>
+    <artifactId>nifi-site-to-site</artifactId>
+    <version>1.0.0</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.nifi/nifi-storm-spout -->
+<dependency>
+    <groupId>org.apache.nifi</groupId>
+    <artifactId>nifi-storm-spout</artifactId>
+    <version>1.0.1</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.nifi/nifi-utils -->
+<dependency>
+    <groupId>org.apache.nifi</groupId>
+    <artifactId>nifi-utils</artifactId>
+    <version>1.0.0</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.objenesis/objenesis -->
+<dependency>
+    <groupId>org.objenesis</groupId>
+    <artifactId>objenesis</artifactId>
+    <version>2.1</version>
+    <scope>compile</scope>
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.twitter/parquet-hive-bundle -->
+<dependency>
+    <groupId>com.twitter</groupId>
+    <artifactId>parquet-hive-bundle</artifactId>
+    <version>1.4.1</version>
+    <scope>compile</scope>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>1.7.12</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+<dependency>
+    <groupId>org.yaml</groupId>
+    <artifactId>snakeyaml</artifactId>
+    <version>1.15</version>
+        <scope>compile</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.storm/storm-core -->
+<dependency>
+    <groupId>org.apache.storm</groupId>
+    <artifactId>storm-core</artifactId>
+    <version>1.0.1</version>
+<scope>provided</scope>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
+<dependency>
+    <groupId>org.apache.zookeeper</groupId>
+    <artifactId>zookeeper</artifactId>
+    <version>3.4.7</version>
+        <scope>compile</scope>
+</dependency>
+<!-- file:///usr/hdp/current/phoenix-client/phoenix-client.jar (Local Repo)-->
+<dependency> 
+<groupId>apache.phoenix</groupId> 
+<artifactId>phoenix-client</artifactId> 
+<version>4.7.0</version> 
+<scope>compile</scope>
+</dependency>
+</dependencies>
+
+
+<build>
+  <plugins>
+  <plugin>
+	<artifactId>maven-assembly-plugin</artifactId>
+	<executions>
+  	<execution>
+  	<id>make-assembly</id>
+    <phase>package</phase>
+    <goals>
+    <goal>attached</goal>
+    </goals>
+  	</execution>
+	</executions>
+	<configuration>
+  	<descriptorRefs>
+    <descriptorRef>jar-with-dependencies</descriptorRef>
+  	</descriptorRefs>
+  	<finalName>NiFiStormTopology-Uber</finalName>
+  	<appendAssemblyId>false</appendAssemblyId>
+   	</configuration>
+   </plugin>
+   </plugins>
+</build>
+</project>
