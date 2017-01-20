@@ -139,7 +139,7 @@ http://your-vm-ip:9090/nifi/
 # ls -l /opt/NiFi-Storm-Log-Ingestion/target/NiFiStormTopology-Uber.jar
 ```
 
-5) Now let us go ahead and submit the topology in storm.
+5) Now let us go ahead and submit the topology in storm (make sure the NiFi flow created above is running before submitting topology).
 
 ```
 # cd /opt/NiFi-Storm-Log-Ingestion
@@ -150,13 +150,13 @@ http://your-vm-ip:9090/nifi/
 
 ```
 Ambari UI: http://your-vm-ip:8080
-Storm UI: http://your-vm-ip:8744/index.html
 ```
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/StormView.jpg)
+
+```
+Storm UI: http://your-vm-ip:8744/index.html
+```
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/StormUI.jpg)
-
-
-4) Now Lets setup the storm topology, the sample code is available as "**NiFiStormTopology.java**" and "**Storm_Nifi.jar**" contains all dependencies required for the topology to run including NiFi Site-to-Site client.
 
 
 
