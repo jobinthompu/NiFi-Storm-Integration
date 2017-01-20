@@ -40,7 +40,7 @@ For Storm, we will use this same mechanism - we will use the Site-to-Site protoc
 	- Enable Phoenix --> Enabled
 	
 	- Enable Authorization --> Off
-3) Create Phoenix Table after connecting to phoenix shell:
+3) Create Phoenix Table after connecting to phoenix shell (or via Zeppelin):
 	
 ```
 # /usr/hdp/current/phoenix-client/bin/sqlline.py sandbox.hortonworks.com:2181:/hbase-unsecure
@@ -119,17 +119,15 @@ http://your-vm-ip:9090/nifi/
 # git clone https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion.git
 ```
 
-2) After making sure Phoenix Query Server is installed on vm, add phoenix-client.jar to maven repository, execute below:
+2) Feel free the inspect pom.xml to verify the dependencies.
 
 ```
 # cd /opt/NiFi-Storm-Log-Ingestion
-# mvn install:install-file -Dfile=/usr/hdp/current/phoenix-client/phoenix-client.jar -DgroupId=apache.phoenix -DartifactId=phoenix-client -Dversion=4.7.0 -Dpackaging=jar -Dscope=compile
+# vi pom.xml
+```
+3) Lets rebuild Storm jar with artifacts (this might take several minutes).
 
 ```
-3) Lets rebuild the artifacts (this might take several minutes).
-
-```
-# cd /opt/NiFi-Storm-Log-Ingestion
 # mvn package
 ```
 

@@ -291,12 +291,12 @@
     <version>3.4.7</version>
         <scope>compile</scope>
 </dependency>
-<!-- file:///usr/hdp/current/phoenix-client/phoenix-client.jar (Local Repo)-->
-<dependency> 
-<groupId>apache.phoenix</groupId> 
-<artifactId>phoenix-client</artifactId> 
-<version>4.7.0</version> 
-<scope>compile</scope>
+<!-- https://mvnrepository.com/artifact/org.apache.phoenix/phoenix-core -->
+<dependency>
+    <groupId>org.apache.phoenix</groupId>
+    <artifactId>phoenix-core</artifactId>
+    <version>4.7.0-HBase-1.1</version>
+    <scope>compile</scope>
 </dependency>
 </dependencies>
 
