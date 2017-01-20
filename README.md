@@ -23,7 +23,14 @@ For Storm, we will use this same mechanism - we will use the Site-to-Site protoc
 2) Storm is Installed on your VM and started.
 
 3) Hbase is Installed with phoeix Query Server.
-	
+
+4) Make sure Maven is installed, if not already, execute below steps:
+
+```
+# curl -o /etc/yum.repos.d/epel-apache-maven.repo https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo
+# yum -y install apache-maven
+# mvn -version
+```	
 ## Configuring and Creating Table in Hbase via Phoenix
 
 1) Make sure Hbase components as well as phoenix query server is started.
