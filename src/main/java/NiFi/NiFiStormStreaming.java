@@ -1,3 +1,4 @@
+//NiFi Storm Phoenix Integration Sample code by Jobin George
 package NiFi;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -26,7 +27,6 @@ import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.TopologyBuilder;
 import org.apache.storm.topology.base.BaseBasicBolt;
 import org.apache.storm.tuple.Tuple;
-
 public class NiFiStormStreaming {
 
 private static Connection con;
@@ -67,7 +67,7 @@ public void execute(Tuple tuple, BasicOutputCollector collector)
 				String UUID = (String) dp.getAttributes().get("uuid");
 				String BULLETIN_LEVEL = (String) dp.getAttributes().get("BULLETIN_LEVEL");
 				
-				
+				//Convert String to DATE Type
 				String NIFI_DATE = (String) dp.getAttributes().get("EVENT_DATE");
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				Date NIFI_DATES = (Date) formatter.parse(NIFI_DATE); 

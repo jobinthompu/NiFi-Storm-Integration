@@ -158,7 +158,7 @@ Storm UI: http://your-vm-ip:8744/index.html
 ```
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/StormUI.jpg)
 
-7) Lets Go back to the NiFi Web UI, if everything works fine, the data which was pending on the port OUT will be gone as it was consumed by Storm.
+7) Lets Go back to the NiFi Web UI, if everything worked fine, the data which was pending on the port OUT will be gone as it was consumed by Storm.
 
 
 9) Lets submit storm topology with below command [Assuming nifi is running on localhost:8099 and data is available on port 'OUT'. If you need to make any minor changes in the code  you can follow instruction starting step 11. **MyFile_** is the prefix of the local files to be created]
