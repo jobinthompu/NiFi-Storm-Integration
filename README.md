@@ -20,7 +20,7 @@ For Storm, we will use this same mechanism - we will use the Site-to-Site protoc
 # wget http://public-repo-1.hortonworks.com.s3.amazonaws.com/HDF/centos6/2.x/updates/2.0.1.0/HDF-2.0.1.0-centos6-tars-tarball.tar.gz
 # tar -xvf HDF-2.0.1.0-12.tar.gz
 ```
-2) Storm is Installed on your VM and started.
+2) Storm, Zeppelin are Installed on your VM and started.
 
 3) Hbase is Installed with phoeix Query Server.
 
@@ -107,6 +107,8 @@ http://your-vm-ip:9090/nifi/
 5) Drop an OutputPort to the canvas and Name it "**OUT**", Once added, connect "ExtractText" to the port for matched relationship. The Flow would look similar as below:
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/Storm-Flow.jpg)
 
+6) Start the flow on NiFi.
+
 
 ## Building Storm application with maven
 
@@ -120,16 +122,39 @@ http://your-vm-ip:9090/nifi/
 2) After making sure Phoenix Query Server is installed on vm, add phoenix-client.jar to maven repository, execute below:
 
 ```
-# cd /opt/NiFiStormTopology/
+# cd /opt/NiFi-Storm-Log-Ingestion
 # mvn install:install-file -Dfile=/usr/hdp/current/phoenix-client/phoenix-client.jar -DgroupId=apache.phoenix -DartifactId=phoenix-client -Dversion=4.7.0 -Dpackaging=jar -Dscope=compile
 
 ```
 3) Lets rebuild the artifacts (this might take several minutes).
 
 ```
-# cd /opt/NiFiStormTopology/
+# cd /opt/NiFi-Storm-Log-Ingestion
 # mvn package
 ```
+
+4) Once the build is SUCCESSFUL, make sure the NiFiStormTopology-Uber.jar is generated in the target folder:
+
+```
+# ls -l /opt/NiFi-Storm-Log-Ingestion/target/NiFiStormTopology-Uber.jar
+```
+
+5) Now let us go ahead and submit the topology in storm.
+
+```
+# cd /opt/NiFi-Storm-Log-Ingestion
+# storm jar target/NiFiStormTopology-Uber.jar NiFi.NiFiStormStreaming &
+```
+
+6) Lets Go ahead and verify the topology is submitted on the Storm View in Ambari as well as Storm UI:
+
+```
+Ambari UI: http://your-vm-ip:8080
+Storm UI: http://your-vm-ip:8744/index.html
+```
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/StormView.jpg)
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/StormUI.jpg)
+
 
 4) Now Lets setup the storm topology, the sample code is available as "**NiFiStormTopology.java**" and "**Storm_Nifi.jar**" contains all dependencies required for the topology to run including NiFi Site-to-Site client.
 
