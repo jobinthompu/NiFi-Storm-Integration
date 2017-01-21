@@ -108,13 +108,14 @@ http://your-vm-ip:9090/nifi/
 3) Drop a  "**SplitText**" Processor to canvas to split the log file into separate lines. Auto terminate Original and Failure Relationship for now. Connect TailFile processor to SplitText Processor for Success Relationship.
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Integration/blob/master/resources/images/SplitText.jpg)
 
-4) Drop a  "**ExtractText**" Processor to canvas to extract portions of the log content to attributes as below:
-	- BULLETIN_LEVEL:([A-Z]{4,5})
-	- CONTENT:(^.*)
-	- EVENT_DATE:([^,]*)
-	- EVENT_TYPE:(?<=\[)(.*?)(?=\])
-	
-	Connect SplitText processor to ExtractText Processor for splits relationship.
+4) Drop a  "**ExtractText**" Processor to canvas to extract portions of the log content to attributes as below. Connect SplitText processor to ExtractText Processor for splits relationship.
+
+```
+	- BULLETIN_LEVEL	:	([A-Z]{4,5})
+	- CONTENT			:	(^.*)
+	- EVENT_DATE		:	([^,]*)
+	- EVENT_TYPE		:	(?<=\[)(.*?)(?=\])
+```	
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Integration/blob/master/resources/images/ExtractText.jpg)
 
 5) Drop an OutputPort to the canvas and Name it "**OUT**", Once added, connect "ExtractText" to the port for matched relationship. The Flow would look similar as below:
