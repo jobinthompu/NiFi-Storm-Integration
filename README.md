@@ -211,14 +211,14 @@ WARN   : ${BULLETIN_LEVEL:equals('WARN')}
 ```
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/RouteOnAttribute.jpg)
 
-3) Drop an AttributesToJSON processor to canvas with below configuration and connect RouteOnAttribute's DEBUG,ERROR,INFO,DEBUG relations to it.
+4) Drop an AttributesToJSON processor to canvas with below configuration and connect RouteOnAttribute's DEBUG,ERROR,INFO,DEBUG relations to it.
 ```
 Attributes List : uuid,EVENT_DATE,BULLETIN_LEVEL,EVENT_TYPE,CONTENT
 Destination : flowfile-content
 ```
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/AttributesToJSON.jpg)
 
-4) Create and enable DBCPConnectionPool with name "Phoenix-Storm" with below configuration:
+5) Create and enable DBCPConnectionPool with name "Phoenix-Storm" with below configuration:
 
 ```
 Database Connection URL : jdbc:phoenix:sandbox.hortonworks.com:2181:/hbase-unsecure
@@ -227,25 +227,25 @@ Database Driver Location(s) : /usr/hdp/current/phoenix-client/phoenix-client.jar
 ```
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/Phoenix-Storm.jpg)
 
-5) Drop a ConvertJSONToSQL to canvas with below configuration, connect AttributesToJSON's success relation to it, auto terminate Failure relation for now after connecting to Phoenix-Storm DB Controller service.
+6) Drop a ConvertJSONToSQL to canvas with below configuration, connect AttributesToJSON's success relation to it, auto terminate Failure relation for now after connecting to Phoenix-Storm DB Controller service.
 
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/ConvertJSONToSQL.jpg)
 
-6) Drop a ReplaceText processor canvas to update INSERT statements to UPSERT for Phoenix with below configuration, connect sql relation of ConvertJSONToSQL auto terminate original and Failure relation.
+7) Drop a ReplaceText processor canvas to update INSERT statements to UPSERT for Phoenix with below configuration, connect sql relation of ConvertJSONToSQL auto terminate original and Failure relation.
 
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/ReplaceText.jpg)
 
-7) Finally add a PutSQL processor with below configurations and connect it to ReplaceText's success relation and auto terminate all of its relations.
+8) Finally add a PutSQL processor with below configurations and connect it to ReplaceText's success relation and auto terminate all of its relations.
 
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/PutSQL.jpg)
 
-8) The final flow including both ingestion via Storm and direct to phoenix using PutSql is complete, it should look similar to below:
+9) The final flow including both ingestion via Storm and direct to phoenix using PutSql is complete, it should look similar to below:
 
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/Final_Flow.jpg)
 
-9) Now go ahead and start the flow to ingest data to both Tables via storm and directly from NiFi.
+10) Now go ahead and start the flow to ingest data to both Tables via storm and directly from NiFi.
 
-10) Login back to Zeppelin to see if data is populated in the NIFI_DIRECT table.
+11) Login back to Zeppelin to see if data is populated in the NIFI_DIRECT table.
 ```
 %jdbc(phoenix)
 SELECT EVENT_DATE,EVENT_TYPE,BULLETIN_LEVEL FROM NIFI_DIRECT WHERE BULLETIN_LEVEL='INFO' ORDER BY EVENT_DATE
@@ -269,4 +269,5 @@ SELECT EVENT_DATE,EVENT_TYPE,BULLETIN_LEVEL FROM NIFI_DIRECT WHERE BULLETIN_LEVE
 
 
 Thanks,
+
 Jobin George
