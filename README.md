@@ -194,7 +194,7 @@ Zeppelin UI: http://your-vm-ip:9995/
 9) No you can Change the code as needed, re-built the jar and re-submit the topologies.
 
 
-## Extending NiFi Flow to ingest data directly to Phoenix using PutSql processor (Work In Progress)
+## Extending NiFi Flow to ingest data directly to Phoenix using PutSql processor
 
 1) Lets go ahead and kill the storm topology from command-line (or from Ambari Storm-View or Storm UI) 
 
