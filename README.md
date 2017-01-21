@@ -10,7 +10,7 @@
 * [Configuring and Starting NiFi](https://github.com/jobinthompu/NiFi-Storm-Integration/blob/master/README.md#configuring-and-starting-nifi)
 * [Building a Flow in NiFi to fetch and parse nifi-app.log](https://github.com/jobinthompu/NiFi-Storm-Integration/blob/master/README.md#building-a-flow-in-nifi-to-fetch-and-parse-nifi-applog)
 * [Building Storm application jar with maven](https://github.com/jobinthompu/NiFi-Storm-Integration/blob/master/README.md#building-storm-application-jar-with-maven)
-* [Extending NiFi Flow to ingest data directly to Phoenix using PutSql processor](https://github.com/jobinthompu/NiFi-Storm-Integration/blob/master/README.md#extending-nifi-flow-to-ingest-data-directly-to-phoenix-using-putsql-processor-work-in-progress)
+* [Extending NiFi Flow to ingest data directly to Phoenix using PutSql processor](https://github.com/jobinthompu/NiFi-Storm-Integration/blob/master/README.md#extending-nifi-flow-to-ingest-data-directly-to-phoenix-using-putsql-processor)
 * [References](https://github.com/jobinthompu/NiFi-Storm-Integration/blob/master/README.md#references)
 
 ## Short Description
