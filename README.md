@@ -1,6 +1,17 @@
 
 # NiFi Site-to-Site Direct streaming to Storm for Log Ingestion
 
+## Index
+
+* [short-description](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#short-description)
+* [Introduction](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#Introduction)
+* [Prerequisites](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#Prerequisites)
+* [Configuring and Creating Table in Hbase via Phoenix](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#configuring-and-creating-table-in-hbase-via-phoenix)
+* [Configuring and Starting NiFi](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#configuring-and-starting-nifi)
+* [Building a Flow in NiFi to fetch and parse nifi-app.log](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#building-a-flow-in-nifi-to-fetch-and-parse-nifi-applog)
+* [Building Storm application jar with maven](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#building-storm-application-jar-with-maven)
+* [Extending NiFi Flow to ingest data directly to Phoenix using PutSql processor](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#extending-nifi-flow-to-ingest-data-directly-to-phoenix-using-putsql-processor-work-in-progress)
+* [References](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#references)
 
 ## Short Description
 
@@ -11,7 +22,7 @@ Sample Application for Log Ingestion with NiFi and Storm into Phoenix using NiFi
 Using NiFi, data can be exposed in such a way that a receiver can pull from it by adding an Output Port to the root process group. 
 For Storm, we will use this same mechanism - we will use the Site-to-Site protocol to pull data from NiFi's Output Ports. In this tutorial we learn to capture NiFi app log from the Sandbox and parse it using Java regex and ingest it to Phoenix via Storm or Directly using NiFi PutSql Processor.
 
-## Prerequisite
+## Prerequisites
 
 1) Assuming you already have latest version of NiFi-1.x/HDF-2.x downloaded as zip file (HDF and HDP cannot be managed by Ambari on same nodes as of now) on to your HW Sandbox Version 2.5, else execute below after ssh connectivity to sandbox is established:
 
