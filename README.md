@@ -213,6 +213,7 @@ WARN   : ${BULLETIN_LEVEL:equals('WARN')}
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Integration/blob/master/resources/images/RouteOnAttribute.jpg)
 
 4) Drop an AttributesToJSON processor to canvas with below configuration and connect RouteOnAttribute's DEBUG,ERROR,INFO,DEBUG relations to it.
+
 ```
 Attributes List : uuid,EVENT_DATE,BULLETIN_LEVEL,EVENT_TYPE,CONTENT
 Destination : flowfile-content
