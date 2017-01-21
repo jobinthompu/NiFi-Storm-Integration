@@ -252,7 +252,7 @@ SELECT EVENT_DATE,EVENT_TYPE,BULLETIN_LEVEL FROM NIFI_DIRECT WHERE BULLETIN_LEVE
 ```
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Integration/blob/master/resources/images/Zeppelin_Final.jpg)
 
-
+* Too Lazy to create flow??? download flow [here] ( https://github.com/jobinthompu/NiFi-Storm-Integration/blob/master/resources/templates/Storm_NiFi_Phoenix.xml)
 
 #### This completes the tutorial,  You have successfully:
 
