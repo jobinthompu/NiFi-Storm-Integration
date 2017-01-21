@@ -57,10 +57,12 @@ For Storm, we will use this same mechanism - we will use the Site-to-Site protoc
 # /usr/hdp/current/phoenix-client/bin/sqlline.py sandbox.hortonworks.com:2181:/hbase-unsecure
 ```
 
-4) Execute below in the Phoenix shell:
+4) Execute below in the Phoenix shell to create tables in Hbase:
 
 ```
 CREATE TABLE NIFI_LOG( UUID VARCHAR NOT NULL, EVENT_DATE DATE, BULLETIN_LEVEL VARCHAR, EVENT_TYPE VARCHAR, CONTENT VARCHAR CONSTRAINT pk PRIMARY KEY(UUID));
+CREATE TABLE NIFI_DIRECT( UUID VARCHAR NOT NULL, EVENT_DATE VARCHAR, BULLETIN_LEVEL VARCHAR, EVENT_TYPE VARCHAR, CONTENT VARCHAR CONSTRAINT pk PRIMARY KEY(UUID));
+
 ```
 	
 ## Configuring and Starting NiFi
@@ -218,7 +220,7 @@ Database Driver Location(s) : /usr/hdp/current/phoenix-client/phoenix-client.jar
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/ConvertJSONToSQL.jpg)
 
 6) 
-### This completes the tutorial,  You have successfully:
+#### This completes the tutorial,  You have successfully:
 
 * Installed and Configured HDF 2.0 on your HDP-2.5 Sandbox.
 * Created a Data flow to pull logs and then to Parse it and mave it available on a Site-to-site enabled NiFi port.
