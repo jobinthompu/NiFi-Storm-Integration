@@ -1,5 +1,5 @@
 
-# NiFi Site-to-Site Direct streaming to Storm for Log Ingestion
+# NiFi Site-to-Site Direct Streaming to Storm for Log Ingestion
 
 ## Index
 
