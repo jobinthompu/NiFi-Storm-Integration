@@ -3,7 +3,7 @@
 
 ## Index
 
-* [short-description](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#short-description)
+* [Short Description](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#short-description)
 * [Introduction](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#Introduction)
 * [Prerequisites](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#Prerequisites)
 * [Configuring and Creating Table in Hbase via Phoenix](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#configuring-and-creating-table-in-hbase-via-phoenix)
