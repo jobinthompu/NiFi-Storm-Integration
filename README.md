@@ -177,7 +177,7 @@ Zeppelin UI: http://your-vm-ip:9995/
 9) No you can Change the code as needed, re-built the jar and re-submit the topologies.
 
 
-## Extending NiFi Flow to ingest data directly to Phoenix using PutSql processor
+## Extending NiFi Flow to ingest data directly to Phoenix using PutSql processor (Work In Progress)
 
 1) Lets go ahead and kill the storm topology from command-line (or from Ambari Storm-View or Storm UI) 
 
@@ -193,7 +193,20 @@ Destination : flowfile-content
 ```
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/AttributesToJSON.jpg)
 
+4) Create and enable DBCPConnectionPool with name "Phoenix-Storm" with below configuration:
 
+```
+Database Connection URL : jdbc:phoenix:sandbox.hortonworks.com:2181:/hbase-unsecure
+Database Driver Class Name : org.apache.phoenix.jdbc.PhoenixDriver
+Database Driver Location(s) : /usr/hdp/current/phoenix-client/phoenix-client.jar	
+```
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/Phoenix-Storm.jpg)
+
+5) Drop a ConvertJSONToSQL to canvas with below configuration, connect AttributesToJSON's success relation to it, auto terminate original and Failure relation for now after connecting to Phoenix-Storm DB Controller service.
+
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/ConvertJSONToSQL.jpg)
+
+6) 
 ### This completes the tutorial,  You have successfully:
 
 * Installed and Configured HDF 2.0 on your HDP-2.5 Sandbox.
