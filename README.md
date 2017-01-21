@@ -177,7 +177,10 @@ Storm UI: http://your-vm-ip:8744/index.html
  
 ```
 # /usr/hdp/current/phoenix-client/bin/sqlline.py localhost:2181:/hbase-unsecure 
+
+SELECT EVENT_DATE,EVENT_TYPE,BULLETIN_LEVEL FROM NIFI_DIRECT WHERE BULLETIN_LEVEL='ERROR' ORDER BY EVENT_DATE
 ```
+
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/sqlline.jpg)
 
  - via Zeppelin for better visualization 
@@ -199,7 +202,16 @@ Zeppelin UI: http://your-vm-ip:9995/
 ```
 2) Log back to NiFi UI currently running the flow, and stop the entire flow.
 
-3) Drop an AttributesToJSON processor to canvas with below configuration and connect ExtractText's Matched relation to it.
+3) Drop a RouteOnAttribute processor to canvas for Matched relation from ExtractText processor and configure it with below property and auto terminate unmatched relation.
+```
+DEBUG  : ${BULLETIN_LEVEL:equals('DEBUG')}
+ERROR  : ${BULLETIN_LEVEL:equals('ERROR')}
+INFO   : ${BULLETIN_LEVEL:equals('INFO')}	
+WARN   : ${BULLETIN_LEVEL:equals('WARN')}
+```
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/RouteOnAttribute.jpg)
+
+3) Drop an AttributesToJSON processor to canvas with below configuration and connect RouteOnAttribute's DEBUG,ERROR,INFO,DEBUG relations to it.
 ```
 Attributes List : uuid,EVENT_DATE,BULLETIN_LEVEL,EVENT_TYPE,CONTENT
 Destination : flowfile-content
@@ -215,11 +227,33 @@ Database Driver Location(s) : /usr/hdp/current/phoenix-client/phoenix-client.jar
 ```
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/Phoenix-Storm.jpg)
 
-5) Drop a ConvertJSONToSQL to canvas with below configuration, connect AttributesToJSON's success relation to it, auto terminate original and Failure relation for now after connecting to Phoenix-Storm DB Controller service.
+5) Drop a ConvertJSONToSQL to canvas with below configuration, connect AttributesToJSON's success relation to it, auto terminate Failure relation for now after connecting to Phoenix-Storm DB Controller service.
 
 ![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/ConvertJSONToSQL.jpg)
 
-6) 
+6) Drop a ReplaceText processor canvas to update INSERT statements to UPSERT for Phoenix with below configuration, connect sql relation of ConvertJSONToSQL auto terminate original and Failure relation.
+
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/ReplaceText.jpg)
+
+7) Finally add a PutSQL processor with below configurations and connect it to ReplaceText's success relation and auto terminate all of its relations.
+
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/PutSQL.jpg)
+
+8) The final flow including both ingestion via Storm and direct to phoenix using PutSql is complete, it should look similar to below:
+
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/Final_Flow.jpg)
+
+9) Now go ahead and start the flow to ingest data to both Tables via storm and directly from NiFi.
+
+10) Login back to Zeppelin to see if data is populated in the NIFI_DIRECT table.
+```
+%jdbc(phoenix)
+SELECT EVENT_DATE,EVENT_TYPE,BULLETIN_LEVEL FROM NIFI_DIRECT WHERE BULLETIN_LEVEL='INFO' ORDER BY EVENT_DATE
+```
+![alt tag](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/resources/images/Zeppelin_Final.jpg)
+
+
+
 #### This completes the tutorial,  You have successfully:
 
 * Installed and Configured HDF 2.0 on your HDP-2.5 Sandbox.
