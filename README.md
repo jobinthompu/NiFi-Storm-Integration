@@ -4,8 +4,8 @@
 ## Index
 
 * [Short Description](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#short-description)
-* [Introduction](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#Introduction)
-* [Prerequisites](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#Prerequisites)
+* [Introduction](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#introduction)
+* [Prerequisites](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#prerequisites)
 * [Configuring and Creating Table in Hbase via Phoenix](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#configuring-and-creating-table-in-hbase-via-phoenix)
 * [Configuring and Starting NiFi](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#configuring-and-starting-nifi)
 * [Building a Flow in NiFi to fetch and parse nifi-app.log](https://github.com/jobinthompu/NiFi-Storm-Log-Ingestion/blob/master/README.md#building-a-flow-in-nifi-to-fetch-and-parse-nifi-applog)
